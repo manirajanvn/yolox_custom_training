@@ -235,7 +235,7 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
             result_frame = predictor.visual(outputs[0], img_info, predictor.confthre)
             if outputs[0] is not None:
                 bot.sendMessage(receiver_id, "Fire Detected")
-                filename = "D:\ws\opencv\yolox\YOLOX-Fire_smoke\\test\\savedImage.jpg"
+                filename = "D:\savedImage.jpg"
                 cv2.imwrite(filename, frame)
                 bot.sendPhoto(receiver_id, photo=open(filename, 'rb'))
                 os.remove(filename)
@@ -309,12 +309,9 @@ def main(exp, args):
     else:
         trt_file = None
         decoder = None
-    '''COCO_CLASSES = (
+    COCO_CLASSES = (
         "Fire",
         "Smoke"
-    )'''
-    COCO_CLASSES = (
-        "f1","f2","f3","f4","f5","m1","m2","m3","m4","m5"
     )
     predictor = Predictor(
         model, exp, COCO_CLASSES, trt_file, decoder,
